@@ -5,65 +5,15 @@
     <artifactId>hprose-java</artifactId>
     <version>2.0.3-SNAPSHOT</version>
     <name>Hprose for Java</name>
-    <description>Hprose is a High Performance Remote Object Service Engine.
-
-        It is a modern, lightweight, cross-language, cross-platform, object-oriented, high performance, remote dynamic communication middleware. It is not only easy to use, but powerful. You just need a little time to learn, then you can use it to easily construct cross language cross platform distributed application system.
-
-        Hprose supports many programming languages, for example:
-
-        * AAuto Quicker
-        * ActionScript
-        * ASP
-        * C++
-        * Dart
-        * Delphi/Free Pascal
-        * dotNET(C#, Visual Basic...)
-        * Golang
-        * Java
-        * JavaScript
-        * Node.js
-        * Objective-C
-        * Perl
-        * PHP
-        * Python
-        * Ruby
-        * ...
-
-        Through Hprose, You can conveniently and efficiently intercommunicate between those programming languages.
-
-        This project is the implementation of Hprose for Java.</description>
-
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
+    <description>
+        简单的RPC框架
+    </description>
     <licenses>
         <license>
             <name>MIT License</name>
             <url>https://raw.github.com/hprose/hprose-java/master/LICENSE.md</url>
         </license>
     </licenses>
-    <scm>
-        <connection>scm:git:https://github.com/hprose/hprose-java.git</connection>
-        <developerConnection>scm:git:https://github.com/hprose/hprose-java.git</developerConnection>
-        <url>https://github.com/hprose/hprose-java</url>
-        <tag>v2.0.3</tag>
-    </scm>
-    <developers>
-        <developer>
-            <id>andot</id>
-            <name>Ma Bingyao</name>
-            <email>andot@hprose.com</email>
-        </developer>
-    </developers>
-
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/hprose/hprose-java/issues</url>
-    </issueManagement>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -72,15 +22,13 @@
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>[3.0,)</version>
-            <scope>provided</scope>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>javax.websocket</groupId>
             <artifactId>javax.websocket-api</artifactId>
             <version>[1.0,)</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -89,62 +37,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <tagNameFormat>v@{project.version}</tagNameFormat>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>

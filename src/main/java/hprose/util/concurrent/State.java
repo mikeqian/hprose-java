@@ -18,6 +18,9 @@
 \**********************************************************/
 package hprose.util.concurrent;
 
+/**
+ * 等待，结束，失败
+ */
 public enum State {
     PENDING, FULFILLED, REJECTED
 }

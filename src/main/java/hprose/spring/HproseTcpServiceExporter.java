@@ -8,37 +8,30 @@
 \**********************************************************/
 /**********************************************************\
  *                                                        *
- * HproseHttpServiceExporter.java                         *
+ * HproseTcpServiceExporter.java                          *
  *                                                        *
- * HproseHttpServiceExporter for Java Spring Framework.   *
+ * HproseTcpServiceExporter for Java Spring Framework.    *
  *                                                        *
  * LastModified: Mar 13, 2016                             *
  * Author: Ma Bingyao <andot@hprose.com>                  *
  *                                                        *
 \**********************************************************/
-package org.springframework.remoting.hprose;
+package hprose.spring;
 
 import hprose.common.FilterHandler;
 import hprose.common.HproseFilter;
 import hprose.common.InvokeHandler;
 import hprose.io.HproseMode;
-import hprose.server.HproseHttpService;
 import hprose.server.HproseServiceEvent;
-import hprose.server.HttpContext;
+import hprose.server.HproseTcpServer;
 import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.remoting.support.RemoteExporter;
-import org.springframework.web.HttpRequestHandler;
 
-
-public class HproseHttpServiceExporter extends RemoteExporter implements InitializingBean, HttpRequestHandler {
-    private HproseHttpService httpService;
-    private boolean crossDomain = true;
-    private boolean get = true;
-    private boolean p3p = true;
+public class HproseTcpServiceExporter extends RemoteExporter implements InitializingBean {
+    private HproseTcpServer tcpServer;
+    private String host;
+    private int port = 0;
     private boolean debug = true;
     private HproseServiceEvent event = null;
     private HproseMode mode = HproseMode.MemberMode;
@@ -53,30 +46,15 @@ public class HproseHttpServiceExporter extends RemoteExporter implements Initial
         checkServiceInterface();
         Object service = getService();
         Class cls = getServiceInterface();
-        httpService = new HproseHttpService();
-        httpService.add(service, cls);
-        httpService.setCrossDomainEnabled(crossDomain);
-        httpService.setGetEnabled(get);
-        httpService.setP3pEnabled(p3p);
-        httpService.setDebugEnabled(debug);
-        httpService.setEvent(event);
-        httpService.setMode(mode);
-        httpService.setFilter(filter);
-        httpService.use(invokeHandler);
-        httpService.beforeFilter.use(beforeFilterHandler);
-        httpService.afterFilter.use(afterFilterHandler);
-    }
-
-    public void setCrossDomainEnabled(boolean value) {
-        crossDomain = value;
-    }
-
-    public void setGetEnabled(boolean value) {
-        get = value;
-    }
-
-    public void setP3pEnabled(boolean value) {
-        p3p = value;
+        tcpServer = new HproseTcpServer(host, port);
+        tcpServer.add(service, cls);
+        tcpServer.setDebugEnabled(debug);
+        tcpServer.setEvent(event);
+        tcpServer.setMode(mode);
+        tcpServer.setFilter(filter);
+        tcpServer.use(invokeHandler);
+        tcpServer.beforeFilter.use(beforeFilterHandler);
+        tcpServer.afterFilter.use(afterFilterHandler);
     }
 
     public void setDebugEnabled(boolean value) {
@@ -107,9 +85,19 @@ public class HproseHttpServiceExporter extends RemoteExporter implements Initial
         afterFilterHandler = value;
     }
 
-    @Override
-    public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        httpService.handle(new HttpContext(httpService, request, response, null, null));
+    public void setHost(String value) {
+        host = value;
     }
 
+    public void setPort(int value) {
+        port = value;
+    }
+
+    public void start() throws IOException {
+        tcpServer.start();
+    }
+
+    public void stop() {
+        tcpServer.stop();
+    }
 }

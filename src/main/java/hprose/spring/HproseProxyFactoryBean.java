@@ -16,7 +16,7 @@
  * Author: Ma Bingyao <andot@hprose.com>                  *
  *                                                        *
 \**********************************************************/
-package org.springframework.remoting.hprose;
+package hprose.spring;
 
 import hprose.client.HproseClient;
 import hprose.client.HproseHttpClient;

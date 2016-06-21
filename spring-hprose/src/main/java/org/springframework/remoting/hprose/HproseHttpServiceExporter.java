@@ -1,11 +1,22 @@
-/**********************************************************\
-|                                                          |
-|                          hprose                          |
-|                                                          |
-| Official WebSite: http://www.hprose.com/                 |
-|                   http://www.hprose.org/                 |
-|                                                          |
-\**********************************************************/
+/**********************************************************
+ * \
+ * |                                                          |
+ * |                          hprose                          |
+ * |                                                          |
+ * | Official WebSite: http://www.hprose.com/                 |
+ * |                   http://www.hprose.org/                 |
+ * |                                                          |
+ * \\
+ * *
+ * HproseHttpServiceExporter.java                         *
+ * *
+ * HproseHttpServiceExporter for Java Spring Framework.   *
+ * *
+ * LastModified: Mar 13, 2016                             *
+ * Author: Ma Bingyao <andot@hprose.com>                  *
+ * *
+ * \
+ **********************************************************/
 /**********************************************************\
  *                                                        *
  * HproseHttpServiceExporter.java                         *
@@ -15,7 +26,7 @@
  * LastModified: Mar 13, 2016                             *
  * Author: Ma Bingyao <andot@hprose.com>                  *
  *                                                        *
-\**********************************************************/
+ \**********************************************************/
 package org.springframework.remoting.hprose;
 
 import hprose.common.FilterHandler;
@@ -25,10 +36,12 @@ import hprose.io.HproseMode;
 import hprose.server.HproseHttpService;
 import hprose.server.HproseServiceEvent;
 import hprose.server.HttpContext;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.remoting.support.RemoteExporter;
 import org.springframework.web.HttpRequestHandler;
@@ -47,7 +60,10 @@ public class HproseHttpServiceExporter extends RemoteExporter implements Initial
     private FilterHandler beforeFilterHandler = null;
     private FilterHandler afterFilterHandler = null;
 
-    @Override
+    /**
+     * 回掉，初始化HttpService
+     * @throws Exception
+     */
     public void afterPropertiesSet() throws Exception {
         checkService();
         checkServiceInterface();
@@ -107,9 +123,14 @@ public class HproseHttpServiceExporter extends RemoteExporter implements Initial
         afterFilterHandler = value;
     }
 
-    @Override
+    /**
+     * 使用HttpService处理请求
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         httpService.handle(new HttpContext(httpService, request, response, null, null));
     }
-
 }

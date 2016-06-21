@@ -1,11 +1,22 @@
-/**********************************************************\
-|                                                          |
-|                          hprose                          |
-|                                                          |
-| Official WebSite: http://www.hprose.com/                 |
-|                   http://www.hprose.org/                 |
-|                                                          |
-\**********************************************************/
+/**********************************************************
+ * \
+ * |                                                          |
+ * |                          hprose                          |
+ * |                                                          |
+ * | Official WebSite: http://www.hprose.com/                 |
+ * |                   http://www.hprose.org/                 |
+ * |                                                          |
+ * \\
+ * *
+ * HproseProxyFactoryBean.java                            *
+ * *
+ * HproseProxyFactoryBean for Java Spring Framework.      *
+ * *
+ * LastModified: Mar 13, 2016                             *
+ * Author: Ma Bingyao <andot@hprose.com>                  *
+ * *
+ * \
+ **********************************************************/
 /**********************************************************\
  *                                                        *
  * HproseProxyFactoryBean.java                            *
@@ -15,7 +26,7 @@
  * LastModified: Mar 13, 2016                             *
  * Author: Ma Bingyao <andot@hprose.com>                  *
  *                                                        *
-\**********************************************************/
+ \**********************************************************/
 package org.springframework.remoting.hprose;
 
 import hprose.client.HproseClient;
@@ -47,15 +58,16 @@ public class HproseProxyFactoryBean extends UrlBasedRemoteAccessor implements Fa
 
     @Override
     public void afterPropertiesSet() {
+        //父类的回调方法。
         super.afterPropertiesSet();
         try {
             client = HproseClient.create(getServiceUrl(), mode);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             exception = ex;
         }
+        //初始化client
         if (client instanceof HproseHttpClient) {
-            HproseHttpClient httpClient = (HproseHttpClient)client;
+            HproseHttpClient httpClient = (HproseHttpClient) client;
             httpClient.setKeepAlive(keepAlive);
             httpClient.setKeepAliveTimeout(keepAliveTimeout);
             httpClient.setTimeout(timeout);
@@ -68,13 +80,13 @@ public class HproseProxyFactoryBean extends UrlBasedRemoteAccessor implements Fa
             httpClient.afterFilter.use(afterFilterHandler);
         }
         if (client instanceof HproseTcpClient) {
-            HproseTcpClient tcpClient = (HproseTcpClient)client;
+            HproseTcpClient tcpClient = (HproseTcpClient) client;
             tcpClient.setTimeout(timeout);
         }
         client.setFilter(filter);
     }
 
-// for HproseHttpClient
+    // for HproseHttpClient
     public void setKeepAlive(boolean value) {
         keepAlive = value;
     }
@@ -99,7 +111,7 @@ public class HproseProxyFactoryBean extends UrlBasedRemoteAccessor implements Fa
         proxyPass = value;
     }
 
-// for HproseClient
+    // for HproseClient
     public void setTimeout(int value) {
         timeout = value;
     }

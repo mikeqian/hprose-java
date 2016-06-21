@@ -7,7 +7,9 @@
     <name>Hprose for Java</name>
     <description>Hprose is a High Performance Remote Object Service Engine.
 
-        It is a modern, lightweight, cross-language, cross-platform, object-oriented, high performance, remote dynamic communication middleware. It is not only easy to use, but powerful. You just need a little time to learn, then you can use it to easily construct cross language cross platform distributed application system.
+        It is a modern, lightweight, cross-language, cross-platform, object-oriented, high performance, remote dynamic
+        communication middleware. It is not only easy to use, but powerful. You just need a little time to learn, then
+        you can use it to easily construct cross language cross platform distributed application system.
 
         Hprose supports many programming languages, for example:
 
@@ -31,7 +33,8 @@
 
         Through Hprose, You can conveniently and efficiently intercommunicate between those programming languages.
 
-        This project is the implementation of Hprose for Java.</description>
+        This project is the implementation of Hprose for Java.
+    </description>
 
     <parent>
         <groupId>org.sonatype.oss</groupId>
@@ -74,13 +77,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>[3.0,)</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.websocket</groupId>
             <artifactId>javax.websocket-api</artifactId>
             <version>[1.0,)</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -99,14 +100,6 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <tagNameFormat>v@{project.version}</tagNameFormat>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>2.2.1</version>
                 <executions>
@@ -114,20 +107,6 @@
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
                         </goals>
                     </execution>
                 </executions>

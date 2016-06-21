@@ -1,4 +1,4 @@
-package hprose.tcphelloexam;
+package tcp;
 
 import hprose.client.HproseTcpClient;
 import hprose.common.HproseCallback1;

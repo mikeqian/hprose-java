@@ -40,7 +40,6 @@ public class HproseTcpServiceExporter extends RemoteExporter implements Initiali
     private FilterHandler beforeFilterHandler = null;
     private FilterHandler afterFilterHandler = null;
 
-    @Override
     public void afterPropertiesSet() throws Exception {
         checkService();
         checkServiceInterface();

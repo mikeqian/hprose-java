@@ -124,7 +124,6 @@ public class HproseProxyFactoryBean extends UrlBasedRemoteAccessor implements Fa
         afterFilterHandler = value;
     }
 
-    @Override
     @SuppressWarnings("unchecked")
     public Object getObject() throws Exception {
         if (exception != null) {
@@ -133,12 +132,10 @@ public class HproseProxyFactoryBean extends UrlBasedRemoteAccessor implements Fa
         return client.useService(getServiceInterface());
     }
 
-    @Override
     public Class getObjectType() {
         return getServiceInterface();
     }
 
-    @Override
     public boolean isSingleton() {
         return true;
     }

@@ -18,6 +18,9 @@
 \**********************************************************/
 package hprose.util.concurrent;
 
+/**
+ * 获得结果
+ */
 public interface Resolver {
     void resolve(Object value);
 }

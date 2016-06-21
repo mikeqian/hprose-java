@@ -18,6 +18,9 @@
 \**********************************************************/
 package hprose.util.concurrent;
 
+/**
+ * 失败
+ */
 public interface Rejector {
     void reject(Throwable e);
 }
